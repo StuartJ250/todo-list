@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import { SqliteDialect } from '@sequelize/sqlite3';
+
 
 
 // DATABASE OTHER OPTIONS MEMORY OR TEMPFILE
@@ -7,8 +7,15 @@ import { SqliteDialect } from '@sequelize/sqlite3';
 // const DB = new sql3.Database('', sql3.OPEN_READWRITE, connected);
 
 
-export const sequelize = new Sequelize({
-    dialect: SqliteDialect,
+const sequelize = new Sequelize({
+    dialect: "sqlite",
     storage: './tasklist.sqlite'
 });
 
+export default sequelize;
+
+export async function initDB(){
+    await sequelize.authenticate();
+    await sequelize.sync();
+    console.log('Database Ready');
+}
