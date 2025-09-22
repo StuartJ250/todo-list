@@ -6,10 +6,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'dotenv/config';
+import router from './routes/tasks.js'
 
 //express app & PORT variables
 const app = express();
 const PORT = process.env.PORT || 5000;
+const taskRouter = router;
 
 // DB ini
 sequelize.sync();
@@ -22,6 +24,7 @@ app.use(
         extended: true
     })
 );
+app.use("/tasks", taskRouter);
 
 
 // GET, POST, PUT, DELETE, PATCH, ETC
@@ -32,9 +35,6 @@ app.get('/', (req, res) => {
         text: "Task Service ONLINE"
     });
 });
-
-app
-
 
 app.listen(PORT, (err)=> {
     if(err){

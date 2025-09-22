@@ -1,7 +1,7 @@
 //imports
 // Sequelize - database ORM, DataTypes & model - class extensions from ORM, sequelize - database
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../connect';
+import sequelize from '../connect.js';
 
 class Task extends Model{}
 
@@ -45,6 +45,7 @@ Task.init(
   },
 );
 
+export default Task;
 
 console.log(Task === sequelize.models.Task)
 
