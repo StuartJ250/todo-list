@@ -1,19 +1,15 @@
 import { Sequelize } from 'sequelize';
 
-
-
-// DATABASE OTHER OPTIONS MEMORY OR TEMPFILE
-// const DB = new sql3.Database(':memory:', sql3.OPEN_READWRITE, connected);
-// const DB = new sql3.Database('', sql3.OPEN_READWRITE, connected);
-
-
+//instancing sequelize
 const sequelize = new Sequelize({
     dialect: "sqlite",
     storage: './tasklist.sqlite'
 });
 
+//exporting default
 export default sequelize;
 
+//exporting db ini
 export async function initDB(){
     await sequelize.authenticate();
     await sequelize.sync();
